@@ -32,7 +32,7 @@ jobs:
       - name: Publish js filename
         id: publish 
         # run: find dist/assets/*.js -type f -execdir echo '{}' ';'   #this code is use to print the name of the file that has extension os .js
-        run: find dist/assets/*.js -type f -execdir echo '::set-output name:script-file::{}' ';'
+        run: find dist/assets/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
         #this is use to store the output file name inside the the particule give variable
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
