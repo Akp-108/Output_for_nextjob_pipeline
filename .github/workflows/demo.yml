@@ -31,12 +31,13 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist-files
-          path: |
-            dist
-            package.json
+          path: dist
+          # path: |
+          #   dist
+          #   package.json
   deploy:
-    needs: build
+    needs: build   #this job is needed if we want to download the artifact 
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy
-        run: echo "Deploying..."
+      - name: Get build artifacts
+        uses: actions/download-artifact@v3    #this is use to download the artifact that is uploaded in previous job
