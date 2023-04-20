@@ -41,3 +41,5 @@ jobs:
     steps:
       - name: Get build artifacts
         uses: actions/download-artifact@v3    #this is use to download the artifact that is uploaded in previous job
+      - name: List of artifact
+        run: ls
