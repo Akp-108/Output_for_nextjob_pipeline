@@ -20,6 +20,8 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.publish.outputs.sctipt-file }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -27,6 +29,11 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      - name: Publish js filename
+        id: publish 
+        # run: find dist/assets/*.js -type f -execdir echo '{}' ';'   #this code is use to print the name of the file that has extension os .js
+        run: find dist/assets/*.js -type f -execdir echo '::set-output name:script-file::{}' ';'
+        #this is use to store the output file name inside the the particule give variable
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -45,3 +52,9 @@ jobs:
           name: dist-files        #this file name should be same in both jobs
       - name: List of artifact
         run: ls
+      - name: output filename
+        run: echo "${{ needs.build.script-file }}"  #here we are printing filename of other job 
+        #"needs" contains the all data of the current bulid
+      - name: whole output
+        run: echo the file name our othe job is printed
+
