@@ -53,7 +53,7 @@ jobs:
       - name: List of artifact
         run: ls
       - name: output filename
-        run: echo "${{ needs.build.script-file }}"  #here we are printing filename of other job 
+        run: echo "${{ needs.build.outputs.script-file }}"  #here we are printing filename of other job 
         #"needs" contains the all data of the current bulid
       - name: whole output
         run: echo the file name our othe job is printed
