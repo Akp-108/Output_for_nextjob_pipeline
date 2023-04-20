@@ -41,5 +41,7 @@ jobs:
     steps:
       - name: Get build artifacts
         uses: actions/download-artifact@v3    #this is use to download the artifact that is uploaded in previous job
+        with:
+          name: dist-files        #this file name should be same in both jobs
       - name: List of artifact
         run: ls
